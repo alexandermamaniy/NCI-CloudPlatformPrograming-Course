@@ -26,7 +26,7 @@ def create_and_delete_my_bucket(s3_resource, bucket_name, keep_bucket):
         raise
 
     bucket.wait_until_exists()
-    list_my_buckets(s3_resource)
+    #Slist_my_buckets(s3_resource)
 
     if not keep_bucket:
         print("\nDeleting bucket:", bucket.name)
