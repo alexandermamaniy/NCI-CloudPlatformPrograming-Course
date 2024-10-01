@@ -20,6 +20,6 @@ def main():
     #s3_client.upload_file(args.file_name,args.bucket_name, args.object_key)
     #s3_client.download_s3_object(bucket=args.bucket_name,object_key=args.object_key,destination_file_name="xcrocuses.jpg")
     #s3_client.enable_versioning_on_bucket(args.bucket_name)
-    s3_client.list_objects_in_bucket(bucket="x23384069")
+    s3_client.list_objects_in_bucket(bucket=args.bucket_name)
 if __name__ == "__main__":
     main()

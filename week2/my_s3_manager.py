@@ -187,9 +187,15 @@ class S3Manager:
         
         try:
             response = self.s3_client.list_objects_v2(Bucket=bucket)
-            logging.info(f"{len(response.get('Contents',[]))} objects found in bucket:{bucket}")
-            return response.get('Contents',[])
+            logging.info(f"{len(response.get("Contents",[]))} objects found in bucket:{bucket}")
+            if response["KeyCount"] != 0:
+                for index,content in enumerate(response["Contents"], start=1):
+                    object_key = content["Key"]
+                    print(f"{index}:{object_key}")
             
+            else:
+                print(f"The bucket:{bucket} is empty")
+            return response.get('Contents',[])
         except Exception as e:
             logging.error(f"Error returning objects in bucket:{bucket} : {e}")
             return []
