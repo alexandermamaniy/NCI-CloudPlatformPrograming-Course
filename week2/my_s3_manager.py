@@ -19,7 +19,7 @@ class S3Manager:
         Object : returns a AWS s3 client object
         """
         try:
-            s3_client =  s3_client = boto3.client('s3')
+            s3_client = boto3.client('s3')
             logging.info(
                 f"Successfully connected to AWS s3 resource"
             )
