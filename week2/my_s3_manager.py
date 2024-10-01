@@ -173,4 +173,24 @@ class S3Manager:
             print(response)
         except Exception as e:
             logging.error(f"Error versioning bucket: {bucket}: {e}")
-        pass
+        
+    
+    def list_objects_in_bucket(self,bucket) -> list:
+        """list objects in s3 bucket
+        
+        Args:
+        bucket: name of the bucket
+        
+        Returns:
+        list : list of buckets in object
+        """
+        
+        try:
+            response = self.s3_client.list_objects_v2(Bucket=bucket)
+            logging.info(f"{len(response.get('Contents',[]))} objects found in bucket:{bucket}")
+            return response.get('Contents',[])
+            
+        except Exception as e:
+            logging.error(f"Error returning objects in bucket:{bucket} : {e}")
+            return []
+        
