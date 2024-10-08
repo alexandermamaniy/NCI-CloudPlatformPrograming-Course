@@ -85,3 +85,27 @@ class DynamoDb:
         
         except Exception as e:
             logging.error(f"Error updating table items: {e}")
+            
+    def delete_an_item(self,table_name,key,region):
+        """Delete an item from a table """
+        
+        try:
+            dynamodb_resource = boto3.resource("dynamodb", region_name=region)
+            table = dynamodb_resource.Table(table_name)
+            table.delete_item(Key=key)
+            logging.info(f"item :{key} deleted from {table_name}")
+        
+        except Exception as e:
+            logging.error(f"Error deleting item: {e}")
+            
+            
+    def delete_table(self,table_name,region):
+        """delete table"""
+        
+        try:
+            dynamodb_resource = boto3.resource("dynamodb", region_name=region)
+            table = dynamodb_resource.Table(table_name)
+            table.delete()
+        
+        except Exception as e:
+            logging.error(f"Error deleteing table:{table_name} :{e}")
